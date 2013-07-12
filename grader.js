@@ -87,6 +87,46 @@ if(require.main == module) {
 
     var checkJson;
     if(program.file){
+if(require.main == module) {
+    program
+        .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHE\
+CKSFILE_DEFAULT)
+        .option('-f, --file <html_file>', 'Path to index.html')
+        .option('-u, --url <url>', 'url of html file')
+        .parse(process.argv);
+
+    var checkJson;
+    if(program.file){
+        checkJson = checkHtmlFile(program.file, program.checks);
+        var outJson = JSON.stringify(checkJson, null, 4);
+        console.log(outJson);
+    }
+    else
+        checkHtmlFileFromURL(program.url, program.checks);
+} else {
+    exports.checkHtmlFile = checkHtmlFile;
+}
+
+if(require.main == module) {
+    program
+        .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHE\
+CKSFILE_DEFAULT)
+        .option('-f, --file <html_file>', 'Path to index.html')
+        .option('-u, --url <url>', 'url of html file')
+        .parse(process.argv);
+
+    var checkJson;
+    if(program.file){
+        checkJson = checkHtmlFile(program.file, program.checks);
+        var outJson = JSON.stringify(checkJson, null, 4);
+        console.log(outJson);
+    }
+    else
+        checkHtmlFileFromURL(program.url, program.checks);
+} else {
+    exports.checkHtmlFile = checkHtmlFile;
+}
+
 	checkJson = checkHtmlFile(program.file, program.checks);
 	var outJson = JSON.stringify(checkJson, null, 4);
 	console.log(outJson);    
